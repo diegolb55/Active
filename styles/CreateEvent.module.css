@@ -1,0 +1,17 @@
+
+
+.createpopup {
+    background: white;
+    height: 100%;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px 30px;
+}
+
+.headingbar {
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: space-between;
+}
