@@ -5,9 +5,10 @@
     width: 100vw;
     position: fixed;
     top: 0;
-    left: 0;
+    left: 100%;
     padding: 20px 30px;
 }
 .headingbar {
     display: flex;
+    padding: 20px 0;
 }

@@ -1,0 +1,28 @@
+
+.ehistory {
+    background: white;
+    /* border: 2px solid red; */
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    padding: 10px 30px;
+}
+.exith {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* .alist {
+    border: 2px solid red;
+} */
+.abox {
+    background: lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 30px;
+    margin: 10px 0;
+}

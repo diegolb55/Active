@@ -1,0 +1,76 @@
+.eventpage {
+    /* border: 2px solid red; */
+    position: relative;
+    overflow: hidden;
+}
+
+.ebar {
+    padding: 20px 30px;
+    background: lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.econtentholder {
+    position: relative;
+}
+.econtent {
+    position: relative;
+}
+
+.einfo{
+    padding: 10px 30px;
+}
+.eactions {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 30px;
+}
+
+.listh {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.listbox {
+    background: lightgray;
+    width: 80%;
+    height: 400px;
+    margin: 0 auto;
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
+}
+.listcont {
+    overflow-y: scroll;
+}
+.guestbox {
+    display: flex;
+    padding: 20px;
+}
+.avatar {
+    border: 2px solid white;
+    border-radius: 100%;
+    height: 40px;
+    width:  40px;
+}
+
+.statsbox{
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 30px;
+}
+.meanbox {
+    background: lightgray;
+    height: 200px;
+    width: 40%;
+}
+.miabox {
+    background: lightgray;
+    height: 200px;
+    width: 40%;
+
+}

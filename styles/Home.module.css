@@ -47,7 +47,7 @@
 /* .events {
   border: 2px solid red;
 } */
-.events > div {
+.eventlink {
   background: lightgray;
   display: flex;
   justify-content: space-around;

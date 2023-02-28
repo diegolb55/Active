@@ -1,8 +1,10 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import { useState } from "react"
 import styles from '@/styles/Home.module.css'
 import { FiPlusCircle } from "react-icons/fi"
 
+import Logo from '@/components/Logo'
 import CreateEvent from '@/components/CreateEvent'
 import SearchEvent from '@/components/SearchEvent'
 
@@ -26,55 +28,60 @@ export default function Home() {
 
         <main className={styles.main}>
           <div className={styles.navbar}>
-            <div></div>
+            <Logo />
             <input type="text" />
           </div>
 
           <div className={styles.titlebox}>
             <h4>My events</h4>
             <FiPlusCircle className={styles.addbtns} onClick={() => setCreatePage(true)}/>
-
           </div>
           <div className={styles.events}>
-            <div>
+            
+            <Link href="/EventPage" className={styles.eventlink}>
               <p>Event A</p>
               <p>ID number</p>
-            </div>
-            <div>
-              <p>Event B</p>
+            </Link>
+            <Link href="/EventPage" className={styles.eventlink}>
+              <p>Event A</p>
               <p>ID number</p>
-            </div>
-            <div>
-              <p>Event C</p>
+            </Link>
+            <Link href="/EventPage" className={styles.eventlink}>
+              <p>Event A</p>
               <p>ID number</p>
-            </div>
-            <div>
-              <p>Event D</p>
+            </Link>
+            <Link href="/EventPage" className={styles.eventlink}>
+              <p>Event A</p>
               <p>ID number</p>
-            </div>
+            </Link>
+            
+            
           </div>
 
           <div className={styles.titlebox}>
             <h4>Events I have joined</h4>
             <FiPlusCircle className={styles.addbtns} onClick={() => setJoinPage(true)}/>
           </div>
+
           <div className={styles.events}>
-            <div>
+
+            <Link href="/" className={styles.eventlink}>
               <p>Event A</p>
               <p>ID number</p>
-            </div>
-            <div>
-              <p>Event B</p>
+            </Link>
+            <Link href="/" className={styles.eventlink}>
+              <p>Event A</p>
               <p>ID number</p>
-            </div>
-            <div>
-              <p>Event C</p>
+            </Link>
+            <Link href="/" className={styles.eventlink}>
+              <p>Event A</p>
               <p>ID number</p>
-            </div>
-            <div>
-              <p>Event D</p>
+            </Link>
+            <Link href="/" className={styles.eventlink}>
+              <p>Event A</p>
               <p>ID number</p>
-            </div>
+            </Link>
+
           </div>
 
           <CreateEvent isOpen={createpage} close={ setCreatePage }/>
