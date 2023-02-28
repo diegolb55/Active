@@ -4,7 +4,7 @@ import styles from '@/styles/Home.module.css'
 import { FiPlusCircle } from "react-icons/fi"
 
 import CreateEvent from '@/components/CreateEvent'
-import JoinEvent from '@/components/JoinEvent'
+import SearchEvent from '@/components/SearchEvent'
 
 import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
@@ -78,7 +78,7 @@ export default function Home() {
           </div>
 
           <CreateEvent isOpen={createpage} close={ setCreatePage }/>
-          <JoinEvent isOpen={joinpage} close={ setJoinPage }/>
+          <SearchEvent isOpen={joinpage} close={ setJoinPage }/>
 
         </main>
 

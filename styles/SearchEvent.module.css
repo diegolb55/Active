@@ -1,0 +1,44 @@
+
+
+.searchpopup {
+    background: white;
+    height: 100%;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    padding: 20px 30px;
+}
+
+.exitsearch {
+    font-size: 1.5rem;
+    position: absolute;
+    right: 30px;
+    z-index: 2;
+}
+.searchinfo {
+    position: relative;
+}
+
+
+
+
+.search {
+    background: lightgray;
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+    width: 60%;
+    display: block;
+    margin: 20px auto;
+}
+/* .results {
+     border: 2px solid red;
+} */
+
+.results > div {
+    background: lightgray;
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 0;
+    margin: 10px 0;
+  }
