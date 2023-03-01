@@ -1,0 +1,22 @@
+
+.regattpage {
+    /* border: 2px solid red; */
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    padding: 100px 30px;
+}
+
+.locationbox {
+    display:flex;
+    justify-content: space-around;
+    padding: 20px 0;
+}
+.datebtn {
+    display:flex;
+    justify-content: space-around;
+    padding: 20px 0;
+}
+

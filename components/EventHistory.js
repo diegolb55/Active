@@ -4,7 +4,7 @@ import { IoIosArrowBack } from "react-icons/io"
 import { AiOutlineEye } from "react-icons/ai"
 
 
-export default function EventHistory({ isOpen, toggle}){
+export default function EventHistory({ isOpen, toggle, toggleAtt }){
     
 
     const lists = () => {
@@ -14,7 +14,9 @@ export default function EventHistory({ isOpen, toggle}){
                     <p>date: 00/00/00</p>
                     <p>10 / 50</p>
                 </div>
-                <AiOutlineEye style={{fontSize:"1.5rem"}}/>
+                <AiOutlineEye 
+                    onClick={() => toggleAtt(true)}
+                    style={{fontSize:"1.5rem"}}/>
 
             </div>
         )

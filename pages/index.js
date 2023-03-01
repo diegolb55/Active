@@ -65,19 +65,19 @@ export default function Home() {
 
           <div className={styles.events}>
 
-            <Link href="/" className={styles.eventlink}>
+            <Link href="/JoinedEventPage" className={styles.eventlink}>
               <p>Event A</p>
               <p>ID number</p>
             </Link>
-            <Link href="/" className={styles.eventlink}>
+            <Link href="/JoinedEventPage" className={styles.eventlink}>
               <p>Event A</p>
               <p>ID number</p>
             </Link>
-            <Link href="/" className={styles.eventlink}>
+            <Link href="/JoinedEventPage" className={styles.eventlink}>
               <p>Event A</p>
               <p>ID number</p>
             </Link>
-            <Link href="/" className={styles.eventlink}>
+            <Link href="/JoinedEventPage" className={styles.eventlink}>
               <p>Event A</p>
               <p>ID number</p>
             </Link>
