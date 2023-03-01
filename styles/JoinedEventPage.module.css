@@ -1,0 +1,53 @@
+.jepage {
+    /* border: 2px solid red; */
+    position: relative;
+    overflow: hidden;
+}
+.ebar {
+    padding: 20px 30px;
+    background: lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.jename {
+    /* background: lightcoral; */
+    width: fit-content;
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    padding-top: 20px;;
+}
+.jename > h3 {
+    white-space: nowrap;
+}
+
+.jecontentholder {
+    
+    position: relative;
+    padding-top: 50px;
+    
+}
+.jecontent {
+    padding: 0 30px;
+    position: relative;
+}
+
+/* .attendances {
+    border: 2px solid blue;
+} */
+.abox {
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.abox > button {
+    padding: 10px 50px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+}

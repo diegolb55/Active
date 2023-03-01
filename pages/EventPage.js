@@ -3,14 +3,18 @@ import styles from "@/styles/EventPage.module.css"
 import { motion } from "framer-motion"
 import { useState } from "react"
 
+import { AiOutlineEye } from "react-icons/ai"
+
+
 import EventHistory from "@/components/EventHistory"
 import AttendanceList from "@/components/AttendanceList"
-
+import NewAttendanceList from "@/components/NewAttendanceList"
 
 export default function EventPage(){
 
     const [historypage, setHistoryPage] = useState(false);
     const [attendancepage, setAttendancePage] = useState(false);
+    const [newattendancepage, setNewAttendancePage] = useState(false);
 
     const guests = () => {
         return (
@@ -45,13 +49,16 @@ export default function EventPage(){
 
 
                     <div className={styles.eactions}>
-                        <button>new attendance</button>
+                        <button onClick={()=> setNewAttendancePage(true)}>new attendance</button>
                         <p onClick={() => setHistoryPage(true)}>history</p>
                     </div>
 
                     <div className={styles.listbox}>
                         <div className={styles.listh}>
-                            <p onClick={() => setAttendancePage(true)}>Most recent attendance list</p>
+                            <AiOutlineEye                              
+                                onClick={() => setAttendancePage(true)}
+                                />
+                            <p>Most recent attendance list</p>
                             <p>sort by</p>
                         </div>
                         <div className={styles.listcont}>
@@ -73,8 +80,10 @@ export default function EventPage(){
                         <div className={styles.miabox}></div>
                     </div>
                 </motion.div>
-                <EventHistory isOpen={historypage} toggle={setHistoryPage}/>
+                <EventHistory isOpen={historypage} toggle={setHistoryPage} toggleAtt={setAttendancePage}/>
             </div>
+
+            <NewAttendanceList isOpen={newattendancepage} toggle={setNewAttendancePage}/>
             <AttendanceList isOpen={attendancepage} toggle={setAttendancePage}/>
         </div>
     )
