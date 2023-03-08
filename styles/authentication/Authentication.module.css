@@ -1,0 +1,29 @@
+.authpage {
+    /* border: 2px solid red; */
+    padding: 50px 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.authpage > h1, .authpage > p:nth-child(2){
+    text-align: center;
+}
+
+.authbox {
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
+    padding: 20px 50px;;
+}
+.actionbox {
+     /* border: 2px solid red; */
+     padding: 10px 0px;
+     display: flex;
+     justify-content: space-between;
+}
+.toggle {
+    color: red;
+    font-weight: bolder;
+    cursor: pointer;
+}
