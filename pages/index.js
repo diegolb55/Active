@@ -8,6 +8,9 @@ import Logo from '@/components/Logo'
 import CreateEvent from '@/components/CreateEvent'
 import SearchEvent from '@/components/SearchEvent'
 
+import { signOut } from 'firebase/auth'
+import { auth } from '@/firebase'
+
 import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
@@ -83,6 +86,9 @@ export default function Home() {
             </Link>
 
           </div>
+
+          <button onClick={ () => signOut(auth)}>SignOut</button>
+
 
           <CreateEvent isOpen={createpage} close={ setCreatePage }/>
           <SearchEvent isOpen={joinpage} close={ setJoinPage }/>
