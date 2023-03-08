@@ -8,16 +8,32 @@ import Logo from '@/components/Logo'
 import CreateEvent from '@/components/CreateEvent'
 import SearchEvent from '@/components/SearchEvent'
 
+import GetUserEvents from '@/utils/GetUserEvents'
+
 import { signOut } from 'firebase/auth'
 import { auth } from '@/firebase'
 
-import { Inter } from 'next/font/google'
-const inter = Inter({ subsets: ['latin'] })
+// import { Inter } from 'next/font/google'
+// const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
 
   const [createpage, setCreatePage] = useState(false);
   const [joinpage, setJoinPage] = useState(false);
+
+  const userEvents = GetUserEvents();
+
+  const showUserEvents = () => {
+    return (
+      userEvents?.map(
+            event => 
+            <Link key={Math.random()} href={`/events/${event.id}`} className={styles.eventlink}>
+              <p>{event.name}</p>
+              <p>{event.id}</p>
+            </Link>
+        )
+    )
+}
 
   return (
     <>
@@ -40,24 +56,8 @@ export default function Home() {
             <FiPlusCircle className={styles.addbtns} onClick={() => setCreatePage(true)}/>
           </div>
           <div className={styles.events}>
-            
-            <Link href="/EventPage" className={styles.eventlink}>
-              <p>Event A</p>
-              <p>ID number</p>
-            </Link>
-            <Link href="/EventPage" className={styles.eventlink}>
-              <p>Event A</p>
-              <p>ID number</p>
-            </Link>
-            <Link href="/EventPage" className={styles.eventlink}>
-              <p>Event A</p>
-              <p>ID number</p>
-            </Link>
-            <Link href="/EventPage" className={styles.eventlink}>
-              <p>Event A</p>
-              <p>ID number</p>
-            </Link>
-            
+          
+            { showUserEvents() }
             
           </div>
 
