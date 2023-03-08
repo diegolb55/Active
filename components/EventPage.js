@@ -1,20 +1,34 @@
 import Logo from "@/components/Logo"
 import styles from "@/styles/EventPage.module.css"
 import { motion } from "framer-motion"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 import { AiOutlineEye } from "react-icons/ai"
-
 
 import EventHistory from "@/components/EventHistory"
 import AttendanceList from "@/components/AttendanceList"
 import NewAttendanceList from "@/components/NewAttendanceList"
+
+import { useRouter } from "next/router"
+import { GetEventById } from "@/utils/GetEventById"
 
 export default function EventPage(){
 
     const [historypage, setHistoryPage] = useState(false);
     const [attendancepage, setAttendancePage] = useState(false);
     const [newattendancepage, setNewAttendancePage] = useState(false);
+
+    const router = useRouter();
+    const { eventId } = router.query;
+    const [event, setEvent] = useState({});
+
+    useEffect(() => {
+        async function fetchEvent() {
+          const event = await GetEventById(eventId);
+          setEvent(event);
+        }
+        fetchEvent();
+    }, [eventId]);
 
     const guests = () => {
         return (
@@ -36,7 +50,7 @@ export default function EventPage(){
                 { historypage ? 
                     <h2>Event History</h2>
                 :
-                    <h2>Event Name</h2>
+                    <h2>{ event.name }</h2>
                 }
             </div>
 
@@ -44,8 +58,8 @@ export default function EventPage(){
                 <motion.div className={styles.econtent}
                     animate={!historypage ? {left: 0} : {left: "-100%"}}
                 >
-                    <p className={styles.einfo}>ID: #####</p>
-                    <p className={styles.einfo}>Description: Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptates, esse magni. Obcaecati itaque repellendus blanditiis nostrum, accusantium officia beatae alias suscipit quam ullam sit, reiciendis expedita? Optio praesentium voluptates dolorum.</p>
+                    <p className={styles.einfo}>ID: { event.id }</p>
+                    <p className={styles.einfo}>Description: { event.description } </p>
 
 
                     <div className={styles.eactions}>
