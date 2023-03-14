@@ -3,24 +3,43 @@ import { motion } from "framer-motion"
 import { IoIosArrowBack } from "react-icons/io"
 import { AiOutlineEye } from "react-icons/ai"
 
+import GetEventAttendances from "@/utils/GetEventAttendances"
 
-export default function EventHistory({ isOpen, toggle, toggleAtt }){
+
+export default function EventHistory({ event, isOpen, toggle, toggleAtt }){
     
+    const attendances = GetEventAttendances(event.id);
 
-    const lists = () => {
-        return (
-            <div className={styles.abox}>
-                <div>
-                    <p>date: 00/00/00</p>
-                    <p>10 / 50</p>
-                </div>
-                <AiOutlineEye 
-                    onClick={() => toggleAtt(true)}
-                    style={{fontSize:"1.5rem"}}/>
+    const timestampToDate = (timestamp) => {
+        if(typeof timestamp ){
+            let jsDate = timestamp?.toDate();
+            let day = jsDate?.getDate();
+            let month = jsDate?.getMonth() + 1;
+            let year = jsDate?.getFullYear();
 
-            </div>
-        )
+            return `${month}/${day}/${year}`
+        }
+        return "00/00/00"
     }
+
+    const showAttendances = () => {
+
+        return (
+            attendances?.map(
+                att => 
+                <div key={Math.random()} className={styles.abox}>
+                    <div>
+                        <p>{ timestampToDate(att.date) }</p>
+                        <p>assistance: {att.present} / {att.capacity} </p>
+                    </div>
+                    <AiOutlineEye 
+                        onClick={() => toggleAtt(true)}
+                        style={{fontSize:"1.5rem"}}
+                    />
+                </div>
+            )
+        )
+      }
     
     return (
         <motion.div className={styles.ehistory}
@@ -28,20 +47,14 @@ export default function EventHistory({ isOpen, toggle, toggleAtt }){
         >
             <div className={styles.exith} onClick={() => toggle(false)}>
                 <IoIosArrowBack style={{fontSize:"1.5rem"}}/>
-                <h3>Event name</h3>
+                <h3>{ event.name }</h3>
             </div>
 
             <p>Recorded attendances</p>
             <div className={styles.alist}>
-                { lists() }
-                { lists() }
-                { lists() }
-                { lists() }
-                { lists() }
-                { lists() }
-                { lists() }
-                { lists() }
 
+                { showAttendances() }
+                
             </div>
 
         </motion.div>
