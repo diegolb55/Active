@@ -6,7 +6,7 @@ export const GetEventById = async (eventId) => {
         const eventRef = doc(db, "events", eventId)
         const eventDoc = await getDoc(eventRef);
 
-        console.log(eventDoc)
+        // console.log(eventDoc)
 
         if (eventDoc.exists) {
             return { id: eventDoc.id, ...eventDoc.data() };

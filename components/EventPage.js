@@ -11,6 +11,8 @@ import NewAttendanceList from "@/components/NewAttendanceList"
 
 import { useRouter } from "next/router"
 import { GetEventById } from "@/utils/GetEventById"
+import  DeleteDocument from '@/utils/DeleteDocument'
+
 
 export default function EventPage(){
 
@@ -40,6 +42,12 @@ export default function EventPage(){
                 </div>
             </div>
         )
+    }
+    const handleDelete = () => {
+        console.log("clecked")
+        DeleteDocument(event.id);
+        router.push('/');
+        
     }
 
     return (
@@ -93,11 +101,14 @@ export default function EventPage(){
                         <div className={styles.meanbox}></div>
                         <div className={styles.miabox}></div>
                     </div>
-                </motion.div>
-                <EventHistory isOpen={historypage} toggle={setHistoryPage} toggleAtt={setAttendancePage}/>
-            </div>
+                    {/* <button onClick={() => handleDelete()}>delete event</button> */}
 
-            <NewAttendanceList isOpen={newattendancepage} toggle={setNewAttendancePage}/>
+                </motion.div>
+                
+                <EventHistory event={event} isOpen={historypage} toggle={setHistoryPage} toggleAtt={setAttendancePage}/>
+
+            </div>
+            <NewAttendanceList event={event} isOpen={newattendancepage} toggle={setNewAttendancePage}/>
             <AttendanceList isOpen={attendancepage} toggle={setAttendancePage}/>
         </div>
     )
