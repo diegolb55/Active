@@ -3,20 +3,31 @@ import { motion } from "framer-motion"
 import { IoIosArrowDown } from "react-icons/io"
 
 
-export default function AttendanceList({isOpen, toggle}){
+import GetAttendees from "@/utils/GetAttendees"
+import TMToDateFormat from "@/utils/TMToDateFormat"
 
 
-    const guest = () => {
+export default function AttendanceList({ event, att, isOpen, toggle}){
+
+    const attendees = GetAttendees(event?.id, att?.id);
+
+    const attendancelist = () => {
+
         return (
-            <div className={styles.guestbox}>
-                <div className={styles.avatar}></div>
-                <div className={styles.ginfo}>
-                    <p>guest name</p>
-                    <p>user identification number</p>
+            attendees?.map(
+                attendee => 
+                <div className={styles.guestbox}>
+                    <div className={styles.avatar}></div>
+                    <div className={styles.ginfo}>
+                        <p>{attendee?.name}</p>
+                        {/* <p>user identification number</p> */}
+                    </div>
                 </div>
-            </div>
+            )
         )
     }
+
+
 
 
     return (
@@ -29,20 +40,13 @@ export default function AttendanceList({isOpen, toggle}){
             <h3>Attendance List</h3>
 
             <div className={styles.ainfo}>
-                <p>present: 10 / 50</p>
-                <p>date: 00/00/00</p>
+                <p>present: {att?.present} / {att?.capacity}</p>
+                <p>date: { TMToDateFormat(att?.date) }</p>
             </div>
             <p>Sort by</p>
             <div className={styles.listbox}>
-                { guest() }
-                { guest() }
-                { guest() }
-                { guest() }
-                { guest() }
-                { guest() }
-                { guest() }
-                { guest() }
-
+                { attendancelist() }
+               
             </div>
 
         </motion.div>

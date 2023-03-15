@@ -16,14 +16,22 @@ import  DeleteDocument from '@/utils/DeleteDocument'
 
 export default function EventPage(){
 
+    // toggle history page
     const [historypage, setHistoryPage] = useState(false);
+
+    // toggle attendance page
     const [attendancepage, setAttendancePage] = useState(false);
+    // attendance to pass to the attendance list page
+    const [ selectedAttendance, setSelectedAttendance ] = useState({}); 
+
+
+    // toggle the page to create new attendances
     const [newattendancepage, setNewAttendancePage] = useState(false);
 
+    // dynamic routing to open page with specific event
     const router = useRouter();
     const { eventId } = router.query;
     const [event, setEvent] = useState({});
-
     useEffect(() => {
         async function fetchEvent() {
           const event = await GetEventById(eventId);
@@ -31,6 +39,8 @@ export default function EventPage(){
         }
         fetchEvent();
     }, [eventId]);
+
+
 
     const guests = () => {
         return (
@@ -49,6 +59,8 @@ export default function EventPage(){
         router.push('/');
         
     }
+
+
 
     return (
         <div className={styles.eventpage}>
@@ -105,11 +117,24 @@ export default function EventPage(){
 
                 </motion.div>
                 
-                <EventHistory event={event} isOpen={historypage} toggle={setHistoryPage} toggleAtt={setAttendancePage}/>
+                <EventHistory event={event} 
+                    isOpen={historypage} 
+                    toggle={setHistoryPage} 
+                    toggleAtt={setAttendancePage}
+                    changeAtt={setSelectedAttendance}
+
+                />
 
             </div>
             <NewAttendanceList event={event} isOpen={newattendancepage} toggle={setNewAttendancePage}/>
-            <AttendanceList isOpen={attendancepage} toggle={setAttendancePage}/>
+            <AttendanceList 
+                isOpen={attendancepage} 
+                toggle={setAttendancePage}
+                changeAtt={setSelectedAttendance}
+                event={event}
+                att={selectedAttendance}
+                    
+            />
         </div>
     )
 }
