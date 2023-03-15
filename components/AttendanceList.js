@@ -16,7 +16,7 @@ export default function AttendanceList({ event, att, isOpen, toggle}){
         return (
             attendees?.map(
                 attendee => 
-                <div className={styles.guestbox}>
+                <div className={styles.guestbox} key={Math.random()}>
                     <div className={styles.avatar}></div>
                     <div className={styles.ginfo}>
                         <p>{attendee?.name}</p>
