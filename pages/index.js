@@ -34,6 +34,18 @@ export default function Home() {
         )
     )
   }
+  const showUserJoinedEvents = () => {
+    return (
+      userEvents?.map(
+            event => 
+            // <Link key={Math.random()} href={`/events/${event.id}`} className={styles.eventlink}>
+            //   <p>{event.name}</p>
+            //   <p>{event.id}</p>
+            // </Link>
+            <></>
+        )
+    )
+  }
 
   return (
     <>
@@ -68,22 +80,7 @@ export default function Home() {
 
           <div className={styles.events}>
 
-            <Link href="/JoinedEventPage" className={styles.eventlink}>
-              <p>Event A</p>
-              <p>ID number</p>
-            </Link>
-            <Link href="/JoinedEventPage" className={styles.eventlink}>
-              <p>Event A</p>
-              <p>ID number</p>
-            </Link>
-            <Link href="/JoinedEventPage" className={styles.eventlink}>
-              <p>Event A</p>
-              <p>ID number</p>
-            </Link>
-            <Link href="/JoinedEventPage" className={styles.eventlink}>
-              <p>Event A</p>
-              <p>ID number</p>
-            </Link>
+           { showUserJoinedEvents() }
 
           </div>
 

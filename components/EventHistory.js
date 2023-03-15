@@ -2,26 +2,23 @@ import styles from "@/styles/EventHistory.module.css"
 import { motion } from "framer-motion"
 import { IoIosArrowBack } from "react-icons/io"
 import { AiOutlineEye } from "react-icons/ai"
+import { useState } from "react"
 
 import GetEventAttendances from "@/utils/GetEventAttendances"
+import TMToDateFormat from "@/utils/TMToDateFormat"
 
 
-export default function EventHistory({ event, isOpen, toggle, toggleAtt }){
+export default function EventHistory({ event, isOpen, toggle, toggleAtt, changeAtt }){
     
     const attendances = GetEventAttendances(event.id);
+    console.log(attendances)
 
-    const timestampToDate = (timestamp) => {
-        if(typeof timestamp ){
-            let jsDate = timestamp?.toDate();
-            let day = jsDate?.getDate();
-            let month = jsDate?.getMonth() + 1;
-            let year = jsDate?.getFullYear();
+    const handleOpenAtt = (att) => {
 
-            return `${month}/${day}/${year}`
-        }
-        return "00/00/00"
+        changeAtt(att);
+        toggleAtt(true);
+
     }
-
     const showAttendances = () => {
 
         return (
@@ -29,17 +26,17 @@ export default function EventHistory({ event, isOpen, toggle, toggleAtt }){
                 att => 
                 <div key={Math.random()} className={styles.abox}>
                     <div>
-                        <p>{ timestampToDate(att.date) }</p>
+                        <p>{ TMToDateFormat(att.date) }</p>
                         <p>assistance: {att.present} / {att.capacity} </p>
                     </div>
                     <AiOutlineEye 
-                        onClick={() => toggleAtt(true)}
+                        onClick={ () => handleOpenAtt(att) }
                         style={{fontSize:"1.5rem"}}
                     />
                 </div>
             )
         )
-      }
+    }
     
     return (
         <motion.div className={styles.ehistory}
