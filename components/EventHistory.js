@@ -11,7 +11,7 @@ import TMToDateFormat from "@/utils/TMToDateFormat"
 export default function EventHistory({ event, isOpen, toggle, toggleAtt, changeAtt }){
     
     const attendances = GetEventAttendances(event.id);
-    console.log(attendances)
+    // console.log(attendances[0].attendees)
 
     const handleOpenAtt = (att) => {
 

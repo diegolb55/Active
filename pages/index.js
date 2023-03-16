@@ -16,12 +16,15 @@ import { auth } from '@/firebase'
 // import { Inter } from 'next/font/google'
 // const inter = Inter({ subsets: ['latin'] })
 
+import GetUserJoinedEvents from '@/utils/GetUserJoinedEvents'
+
 export default function Home() {
 
   const [createpage, setCreatePage] = useState(false);
   const [joinpage, setJoinPage] = useState(false);
 
   const userEvents = GetUserEvents();
+  const ujoinedEvents = GetUserJoinedEvents();
 
   const showUserEvents = () => {
     return (
@@ -36,13 +39,12 @@ export default function Home() {
   }
   const showUserJoinedEvents = () => {
     return (
-      userEvents?.map(
+      ujoinedEvents?.map(
             event => 
-            // <Link key={Math.random()} href={`/events/${event.id}`} className={styles.eventlink}>
-            //   <p>{event.name}</p>
-            //   <p>{event.id}</p>
-            // </Link>
-            <></>
+            <Link key={Math.random()} href={`/joinedevent/${event.id}`} className={styles.eventlink}>
+              <p>{event.name}</p>
+              <p>{event.id}</p>
+            </Link>
         )
     )
   }

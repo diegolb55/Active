@@ -1,25 +1,26 @@
 import styles from "@/styles/AttendanceList.module.css"
 import { motion } from "framer-motion"
 import { IoIosArrowDown } from "react-icons/io"
+import { useState } from "react"
 
 
-import GetAttendees from "@/utils/GetAttendees"
+import GetAttendeeNames from "@/utils/GetAttendeeNames"
 import TMToDateFormat from "@/utils/TMToDateFormat"
 
 
 export default function AttendanceList({ event, att, isOpen, toggle}){
 
-    const attendees = GetAttendees(event?.id, att?.id);
+    const names = GetAttendeeNames(att?.attendees);
 
     const attendancelist = () => {
 
         return (
-            attendees?.map(
-                attendee => 
+            names?.map(
+                name => 
                 <div className={styles.guestbox} key={Math.random()}>
                     <div className={styles.avatar}></div>
                     <div className={styles.ginfo}>
-                        <p>{attendee?.name}</p>
+                        <p>{name}</p>
                         {/* <p>user identification number</p> */}
                     </div>
                 </div>

@@ -2,7 +2,7 @@ import styles from "@/styles/JoinEvent.module.css"
 import { motion } from "framer-motion"
 import { IoIosArrowBack } from "react-icons/io"
 
-export default function JoinEvent({ isOpen, toggle}){
+export default function JoinEvent({ event, isOpen, toggle}){
     
     return (
         <motion.div className={styles.joinpopup}
@@ -11,14 +11,14 @@ export default function JoinEvent({ isOpen, toggle}){
 
             <div className={styles.headingbar}>
                 <IoIosArrowBack/>
-                <h4 onClick={() => toggle(false)}>Other Events</h4>
+                <h4 onClick={() => toggle(false)}>Other Available Events</h4>
             </div>
 
-            <h3>Event Name</h3>
+            <h3>{ event?.name }</h3>
             <h4>Event Id: </h4>
-            <p>############</p>
+            <p>{ event?.id} </p>
             <h4>Event Description:</h4>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut dolorem maxime, sunt omnis atque optio consequuntur vero! Hic voluptates maiores rem, labore cumque ipsam reprehenderit vel. Nam voluptatibus molestiae libero!</p>
+            <p>{ event?.description }</p>
             <h4>Mean Status:</h4>
             <p>20 / 50</p>
 
