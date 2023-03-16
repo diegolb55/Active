@@ -7,11 +7,14 @@ export default async function AddEventAttendance(eventid, modality, capacity, da
     try {
         const newEventRef = doc(collection(db, `events/${eventid}/attendances`));
         await setDoc(newEventRef, {
-            modality: modality,
+            
             capacity: capacity,
             present: 0,
             date: date,
-            expiration: expiration
+            expiration: expiration,
+            modality: modality,
+            attendees:[]
+            
         });
 
         console.log('Event attendance added successfully!');
