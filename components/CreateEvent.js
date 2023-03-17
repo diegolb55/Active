@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion"
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import { RxCross1 } from "react-icons/rx"
 import { FiPlusCircle } from "react-icons/fi"
 
@@ -14,12 +14,31 @@ export default function CreateEvent({ isOpen, close }) {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [location, setLocation] = useState('');
+    const [passcode, setPasscode] = useState('');
+    
+    const [register, setRegister] = useState({  barcode:false, passcode:false, })
+    const updateRegister = e => {
+        const {id, checked} = e.target;
+        setRegister((prevState) => ({
+            // Retain the existing values
+            ...prevState,
+            // update the current field
+            [id]: checked,
+        }));
+    }
+
+
+  
+
+
+    
+
 
     const handleSubmit = (e) => {
 
         e.preventDefault();
 
-        AddEvents(name, description, location);
+        AddEvents(name, description, location, register, passcode);
 
         setName("");
         setDescription("");
@@ -69,6 +88,43 @@ export default function CreateEvent({ isOpen, close }) {
                     />
                     {/* <input type="text" />
                     <FiPlusCircle/> */}
+
+                    <div className={styles.qbox}>
+                        <p>Allow guest registration via:</p>
+                        <div>
+                            <input type="radio" 
+                                id="barcode"
+                                name="register"
+                                checked={register.barcode}
+                                onChange={updateRegister}
+                                disabled={true}
+                            />
+                            <label htmlFor="">barcode</label>
+                        </div>
+
+                        <div>
+                            <input type="radio" 
+                            
+                                id="passcode"
+                                name="register"
+
+                                checked={register.passcode}
+                                onChange={updateRegister}
+                                required
+                            />
+                            <label htmlFor="">passcode</label>
+
+                            { register.passcode ? 
+                                <input type="text" 
+                                    value={passcode}
+                                    onChange={(e)=> setPasscode(e.target.value)}
+                                />
+                            :
+                                <></>
+                            }
+                        </div>
+                        
+                    </div>
                 </div>
 
                 <button type="submit" >create</button>

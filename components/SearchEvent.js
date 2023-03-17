@@ -24,9 +24,7 @@ export default function SearchEvent({ isOpen, close }) {
         setJoinPage(true);
     }
 
-    useEffect(()=> {
-        console.log("selected E", selectedEvent);
-    }, [selectedEvent])
+   
 
     // search bar functionality
     const [searchInput, setSearchInput] = useState("");
@@ -82,6 +80,7 @@ export default function SearchEvent({ isOpen, close }) {
 
             <JoinEvent isOpen={joinpage} toggle={setJoinPage}
                 event={selectedEvent}
+                toggleSearch={close}
             />
         </motion.div>
     )

@@ -53,11 +53,7 @@ export default function JoinedEventPage(){
                     animate={!regatt ? {left: 0} : {left: "-100%"}}
 
                 >
-                    <h4>Event Id: 
-                        <span style={{fontWeight:"lighter"}}>
-                            { event?.id }
-                        </span>
-                    </h4>
+                    
                     <h4>Event Description:</h4>
                     <p>{ event?.description }</p>
                     <h4>Mean Status:</h4>

@@ -16,7 +16,7 @@ export default function NewAttendanceList({ event, isOpen, toggle}) {
         passcode:false,
         button:false
     })
-
+   
     const [capacity, setCapacity] = useState();
 
 

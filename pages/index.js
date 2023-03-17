@@ -19,9 +19,9 @@ import { auth } from '@/firebase'
 import GetUserJoinedEvents from '@/utils/GetUserJoinedEvents'
 
 export default function Home() {
-
+  
   const [createpage, setCreatePage] = useState(false);
-  const [joinpage, setJoinPage] = useState(false);
+  const [toggleSearch, setToggleSearch] = useState(false);
 
   const userEvents = GetUserEvents();
   const ujoinedEvents = GetUserJoinedEvents();
@@ -32,7 +32,6 @@ export default function Home() {
             event => 
             <Link key={Math.random()} href={`/events/${event.id}`} className={styles.eventlink}>
               <p>{event.name}</p>
-              <p>{event.id}</p>
             </Link>
         )
     )
@@ -43,7 +42,6 @@ export default function Home() {
             event => 
             <Link key={Math.random()} href={`/joinedevent/${event.id}`} className={styles.eventlink}>
               <p>{event.name}</p>
-              <p>{event.id}</p>
             </Link>
         )
     )
@@ -77,7 +75,7 @@ export default function Home() {
 
           <div className={styles.titlebox}>
             <h4>Events I have joined</h4>
-            <FiPlusCircle className={styles.addbtns} onClick={() => setJoinPage(true)}/>
+            <FiPlusCircle className={styles.addbtns} onClick={() => setToggleSearch(true)}/>
           </div>
 
           <div className={styles.events}>
@@ -90,7 +88,7 @@ export default function Home() {
 
 
           <CreateEvent isOpen={createpage} close={ setCreatePage }/>
-          <SearchEvent isOpen={joinpage} close={ setJoinPage }/>
+          <SearchEvent isOpen={toggleSearch} close={ setToggleSearch }/>
 
         </main>
 
