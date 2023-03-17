@@ -9,6 +9,12 @@ import { useRouter } from "next/router"
 import { GetEventById } from "@/utils/GetEventById"
 import  DeleteDocument from '@/utils/DeleteDocument'
 
+import GetEventAttendances from "@/utils/GetEventAttendances"
+import TMToDateFormat from "@/utils/TMToDateFormat"
+import IsPresent from "@/utils/IsPresent"
+import IsLiveAtt from "@/utils/IsLiveAtt"
+
+
 
 
 export default function JoinedEventPage(){
@@ -26,6 +32,27 @@ export default function JoinedEventPage(){
         }
         fetchEvent();
     }, [eventId]);
+
+
+    const attendances = GetEventAttendances(event.id);
+    if(attendances){
+        console.log(attendances)
+
+        const live = IsLiveAtt(attendances[0]?.date, attendances[0]?.expiration);
+        console.log("live", live)
+    }
+
+    const getattendances = () => {
+        return attendances?.map(
+            att =>
+            <div key={Math.random()} className={styles.abox}>
+                <p>date: {TMToDateFormat(att.date)}</p>
+
+
+                <p>{ IsPresent(att?.attendees) ? "present":"missing" }</p>
+            </div>
+        )
+    }
 
     return (
         <div className={styles.jepage}>
@@ -64,26 +91,9 @@ export default function JoinedEventPage(){
 
                     <p>My attendances:</p>
                     <div className={styles.attendances}>
-                        <div className={styles.abox}>
-                            <p>date: 00/00/00</p>
-                            <p>present</p>
-                        </div>
-                        <div className={styles.abox}>
-                            <p>date: 00/00/00</p>
-                            <p>present</p>
-                        </div>
-                        <div className={styles.abox}>
-                            <p>date: 00/00/00</p>
-                            <p>present</p>
-                        </div>
-                        <div className={styles.abox}>
-                            <p>date: 00/00/00</p>
-                            <p>present</p>
-                        </div>
-                        <div className={styles.abox}>
-                            <p>date: 00/00/00</p>
-                            <p>present</p>
-                        </div>
+                        { 
+                            getattendances()
+                        }
                         <div className={styles.abox}>
                             <p>date: 00/00/00</p>
                             <button onClick={ ()=> setRegAtt(true)}> Add </button>

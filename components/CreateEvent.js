@@ -28,12 +28,6 @@ export default function CreateEvent({ isOpen, close }) {
     }
 
 
-  
-
-
-    
-
-
     const handleSubmit = (e) => {
 
         e.preventDefault();

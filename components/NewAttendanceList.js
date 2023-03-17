@@ -11,11 +11,16 @@ import { Timestamp } from "firebase/firestore"
 export default function NewAttendanceList({ event, isOpen, toggle}) {
 
 
-    const modality = useRef({
-        barcode:false,
-        passcode:false,
-        button:false
-    })
+    const [checkin, setCheckin] = useState({  barcode:false, passcode:false, })
+    const updateCheckin = e => {
+        const {id, checked} = e.target;
+        setCheckin((prevState) => ({
+            // Retain the existing values
+            ...prevState,
+            // update the current field
+            [id]: checked,
+        }));
+    }
    
     const [capacity, setCapacity] = useState();
 
@@ -32,26 +37,15 @@ export default function NewAttendanceList({ event, isOpen, toggle}) {
         if(selectedDate  && selectedExpiration){
             let date = Timestamp.fromDate(selectedDate);
             let expiration = Timestamp.fromDate(selectedExpiration);
-            // console.log("date", date);
-            // console.log("expiration", expiration);
-
-            AddEventAttendance(event.id, modality.current, capacity, date, expiration);
-            resetInputs();
-
             
+            AddEventAttendance(event.id, checkin, capacity, date, expiration);
+            resetInputs();
             toggle(false);
-
-
-
         }
-
-
     }
 
     const resetInputs = () => {
         setCapacity('');
-        
-
     }
     
 
@@ -71,28 +65,29 @@ export default function NewAttendanceList({ event, isOpen, toggle}) {
 
             <form action="" onSubmit={(e)=>handleSubmit(e)}>
 
-                
                 <div className={styles.qbox}>
                     <p>Allow registration via:</p>
                     <div>
-                        <input type="checkbox" name="barcode"
-                            onClick={() => modality.current.barcode = !modality.current.barcode }
+                        <input type="checkbox" 
+                            name="checkin"
+                            id="barcode"
+                            checked={checkin.barcode}
+                            onChange={ updateCheckin }
+                            disabled={true}
                         />
                         <label htmlFor="">barcode</label>
                     </div>
 
                     <div>
-                        <input type="checkbox" name="passcode"
-                            onClick={() => modality.current.passcode = !modality.current.passcode }
+                        <input type="checkbox" 
+                            name="checkin"
+                            id="passcode"
+                            checked={checkin.passcode}
+                            onChange={ updateCheckin }
                         />
                         <label htmlFor="">passcode</label>
                     </div>
-                    <div>
-                        <input type="checkbox" name="button"
-                            onClick={() => modality.current.button = !modality.current.button }
-                        />
-                        <label htmlFor="">button</label>
-                    </div>
+                   
                 </div>
                 
                 
