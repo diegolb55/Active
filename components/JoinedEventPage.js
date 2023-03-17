@@ -12,7 +12,8 @@ import  DeleteDocument from '@/utils/DeleteDocument'
 import GetEventAttendances from "@/utils/GetEventAttendances"
 import TMToDateFormat from "@/utils/TMToDateFormat"
 import IsPresent from "@/utils/IsPresent"
-import IsLiveAtt from "@/utils/IsLiveAtt"
+import AttStatus from "@/utils/AttStatus"
+import { Timestamp } from "firebase/firestore"
 
 
 
@@ -35,12 +36,7 @@ export default function JoinedEventPage(){
 
 
     const attendances = GetEventAttendances(event.id);
-    if(attendances){
-        console.log(attendances)
-
-        const live = IsLiveAtt(attendances[0]?.date, attendances[0]?.expiration);
-        console.log("live", live)
-    }
+    const [selectedAtt, setSelectedAtt] = useState({});
 
     const getattendances = () => {
         return attendances?.map(
@@ -48,11 +44,15 @@ export default function JoinedEventPage(){
             <div key={Math.random()} className={styles.abox}>
                 <p>date: {TMToDateFormat(att.date)}</p>
 
-
-                <p>{ IsPresent(att?.attendees) ? "present":"missing" }</p>
+                <AttStatus start={att.date} exp={att.expiration} 
+                    setRegAtt={setRegAtt} setSelectedAtt={setSelectedAtt}
+                    att={att}
+                />
+                
             </div>
         )
     }
+
 
     return (
         <div className={styles.jepage}>
@@ -78,7 +78,6 @@ export default function JoinedEventPage(){
             <div className={styles.jecontentholder}>
                 <motion.div className={styles.jecontent}
                     animate={!regatt ? {left: 0} : {left: "-100%"}}
-
                 >
                     
                     <h4>Event Description:</h4>
@@ -94,14 +93,14 @@ export default function JoinedEventPage(){
                         { 
                             getattendances()
                         }
-                        <div className={styles.abox}>
-                            <p>date: 00/00/00</p>
-                            <button onClick={ ()=> setRegAtt(true)}> Add </button>
-                        </div>
+                       
                     </div>
                 </motion.div>
                 
-                <RegisterAttendance isOpen={regatt} toggle={setRegAtt} />
+                <RegisterAttendance 
+                    att={selectedAtt}
+                    isOpen={regatt} toggle={setRegAtt} 
+                />
 
             </div>
 
