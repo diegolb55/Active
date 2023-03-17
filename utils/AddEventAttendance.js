@@ -2,7 +2,7 @@ import { doc, setDoc, collection, addDoc } from 'firebase/firestore';
 import { auth, db } from '@/firebase';
 
 
-export default async function AddEventAttendance(eventid, modality, capacity, date, expiration ) {
+export default async function AddEventAttendance(eventid, checkin, capacity, date, expiration ) {
 
     try {
         const newEventRef = doc(collection(db, `events/${eventid}/attendances`));
@@ -12,7 +12,7 @@ export default async function AddEventAttendance(eventid, modality, capacity, da
             present: 0,
             date: date,
             expiration: expiration,
-            modality: modality,
+            checkin: checkin,
             attendees:[]
             
         });
