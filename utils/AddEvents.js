@@ -3,7 +3,7 @@ import { doc, setDoc, collection, addDoc } from 'firebase/firestore';
 import { auth, db } from '@/firebase';
 
 
-export default async function AddEvents(name, description, location) {
+export default async function AddEvents(name, description, location, register, passcode) {
 
 
     try {
@@ -14,6 +14,9 @@ export default async function AddEvents(name, description, location) {
             description: description,
             location: location,
             coordinator: currentUser.uid,
+            register: register,
+            passcode: passcode,
+            guests:[],
         });
 
         console.log('Event added successfully!');

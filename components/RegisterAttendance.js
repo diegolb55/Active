@@ -26,7 +26,7 @@ export default function RegisterAttendance({ isOpen, toggle }){
 
                 <div className={styles.datebtn}>
                     <p>date: 00/00/00: </p>
-                    <button>register</button>
+                    <button>check in</button>
                 </div>
             </form>
 
