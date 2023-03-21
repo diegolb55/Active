@@ -24,7 +24,6 @@ export default function EventPage(){
     // attendance to pass to the attendance list page
     const [ selectedAttendance, setSelectedAttendance ] = useState({}); 
 
-
     // toggle the page to create new attendances
     const [newattendancepage, setNewAttendancePage] = useState(false);
 
@@ -78,7 +77,7 @@ export default function EventPage(){
                 <motion.div className={styles.econtent}
                     animate={!historypage ? {left: 0} : {left: "-100%"}}
                 >
-                    <p className={styles.einfo}>ID: { event.id }</p>
+                    {/* <p className={styles.einfo}>ID: { event.id }</p> */}
                     <p className={styles.einfo}>Description: { event.description } </p>
 
 
