@@ -44,10 +44,16 @@ export default function JoinedEventPage(){
             <div key={Math.random()} className={styles.abox}>
                 <p>date: {TMToDateFormat(att.date)}</p>
 
-                <AttStatus start={att.date} exp={att.expiration} 
-                    setRegAtt={setRegAtt} setSelectedAtt={setSelectedAtt}
-                    att={att}
-                />
+                
+                {
+                    IsPresent(att.attendees) ?
+                    <p>present</p>
+                    :
+                    <AttStatus start={att.date} exp={att.expiration} 
+                        setRegAtt={setRegAtt} setSelectedAtt={setSelectedAtt}
+                        att={att}
+                    />
+                }
                 
             </div>
         )
@@ -100,6 +106,7 @@ export default function JoinedEventPage(){
                 <RegisterAttendance 
                     att={selectedAtt}
                     isOpen={regatt} toggle={setRegAtt} 
+                    event={event}
                 />
 
             </div>

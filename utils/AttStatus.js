@@ -9,10 +9,11 @@ export default function AttStatus({start, exp, setRegAtt, setSelectedAtt, att}){
         const current = Timestamp.now();
 
         // between values
-        if (current.seconds < start.seconds){
+      
+        if(current.seconds < start.seconds){
             return <p>--/--</p>
         }
-        if(current.seconds >= start.seconds && current.seconds < exp.seconds){
+        else if(current.seconds >= start.seconds && current.seconds < exp.seconds){
             return <button onClick={ ()=> {
                 setRegAtt(true)
                 setSelectedAtt(att)

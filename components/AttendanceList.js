@@ -41,7 +41,7 @@ export default function AttendanceList({ event, att, isOpen, toggle}){
             <h3>Attendance List</h3>
 
             <div className={styles.ainfo}>
-                <p>present: {att?.present} / {att?.capacity}</p>
+                <p>present: { att?.attendees?.length} / {att?.capacity}</p>
                 <p>date: { TMToDateFormat(att?.date) }</p>
             </div>
             <p>Sort by</p>

@@ -10,7 +10,7 @@ import { Timestamp } from "firebase/firestore"
 
 export default function NewAttendanceList({ event, isOpen, toggle}) {
 
-
+    const [passcode, setPasscode] = useState("")
     const [checkin, setCheckin] = useState({  barcode:false, passcode:false, })
     const updateCheckin = e => {
         const {id, checked} = e.target;
@@ -23,13 +23,8 @@ export default function NewAttendanceList({ event, isOpen, toggle}) {
     }
    
     const [capacity, setCapacity] = useState();
-
-
     const [selectedDate, setSelectedDate] = useState( null );
     const [selectedExpiration, setSelectedExpiration] = useState( null );
-
-
-
 
     const handleSubmit = (e) => {
         e.preventDefault();        
@@ -38,18 +33,13 @@ export default function NewAttendanceList({ event, isOpen, toggle}) {
             let date = Timestamp.fromDate(selectedDate);
             let expiration = Timestamp.fromDate(selectedExpiration);
             
-            AddEventAttendance(event.id, checkin, capacity, date, expiration);
-            resetInputs();
+            AddEventAttendance(event.id, checkin, passcode, capacity, date, expiration);
+            setCapacity('');
+
             toggle(false);
         }
     }
 
-    const resetInputs = () => {
-        setCapacity('');
-    }
-    
-
- 
     return (
         <motion.div className={styles.newalist}
             animate={isOpen ? { top:0 } : { top:"100%" }}
@@ -58,7 +48,7 @@ export default function NewAttendanceList({ event, isOpen, toggle}) {
 
             <IoIosArrowDown className={styles.exitlist} 
                 onClick={() => {
-                    resetInputs();
+                    setCapacity('');
                     toggle(false);
                 }} />
             <h3>New Attendance List</h3>
@@ -86,6 +76,16 @@ export default function NewAttendanceList({ event, isOpen, toggle}) {
                             onChange={ updateCheckin }
                         />
                         <label htmlFor="">passcode</label>
+
+                        {
+                            checkin.passcode ?
+                                <input type="text" 
+                                    value={passcode}
+                                    onChange={(e)=>setPasscode(e.target.value)}
+                                />
+                            :
+                                <></>
+                        }
                     </div>
                    
                 </div>
