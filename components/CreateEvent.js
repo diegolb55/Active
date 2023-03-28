@@ -45,14 +45,14 @@ export default function CreateEvent({ isOpen, close }) {
         <motion.div className={styles.createpopup}
             animate={isOpen ? {left: 0} : {left: "100%"}}
         >
-            <div className={styles.headingbar}>
-                <h4>Creating new Event</h4>
-                <RxCross1 onClick={() => close(false)}/>
-            </div>
+
+            <RxCross1 className={styles.exit } onClick={() => close(false)}/>
+            <h4>New Event</h4>
+
+            
             <form action="" onSubmit={ (e) => handleSubmit(e) }>
                 
 
-                <div>
                     <p>Event name:</p>
                     <input type="text"
                         value={name}
@@ -61,11 +61,8 @@ export default function CreateEvent({ isOpen, close }) {
                         required 
                     />
 
-                    {/* <p htmlFor="">Event search id</p>
-                    <input type="text" /> */}
-
-                    
                     <p htmlFor="">event description:</p>
+
                     <textarea id="description" cols="30" rows="10"
                         value={description}
                         onChange={ (e)=> setDescription(e.target.value) }
@@ -74,6 +71,7 @@ export default function CreateEvent({ isOpen, close }) {
                 
 
                     <p htmlFor="">event location:</p>
+
                     <input type="text"
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}
@@ -82,9 +80,11 @@ export default function CreateEvent({ isOpen, close }) {
                     />
                     {/* <input type="text" />
                     <FiPlusCircle/> */}
+                    
+                    <p>Allow guest registration via:</p>
 
                     <div className={styles.qbox}>
-                        <p>Allow guest registration via:</p>
+                        
                         <div>
                             <input type="radio" 
                                 id="barcode"
@@ -108,18 +108,17 @@ export default function CreateEvent({ isOpen, close }) {
                             />
                             <label htmlFor="">passcode</label>
 
-                            { register.passcode ? 
-                                <input type="text" 
-                                    value={passcode}
-                                    onChange={(e)=> setPasscode(e.target.value)}
-                                />
-                            :
-                                <></>
-                            }
                         </div>
+                        { register.passcode ? 
+                            <input type="text" 
+                                value={passcode}
+                                onChange={(e)=> setPasscode(e.target.value)}
+                            />
+                            :
+                            <></>
+                        }
                         
                     </div>
-                </div>
 
                 <button type="submit" >create</button>
             </form>

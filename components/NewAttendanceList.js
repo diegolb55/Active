@@ -54,10 +54,11 @@ export default function NewAttendanceList({ event, isOpen, toggle}) {
             <h3>New Attendance List</h3>
 
             <form action="" onSubmit={(e)=>handleSubmit(e)}>
+                <p>Allow registration via:</p>
 
-                <div className={styles.qbox}>
-                    <p>Allow registration via:</p>
-                    <div>
+                <div className={`${styles.qbox} ${styles.checks}`}>
+
+                    <div >
                         <input type="checkbox" 
                             name="checkin"
                             id="barcode"

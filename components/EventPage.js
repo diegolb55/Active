@@ -12,6 +12,8 @@ import NewAttendanceList from "@/components/NewAttendanceList"
 import { useRouter } from "next/router"
 import { GetEventById } from "@/utils/GetEventById"
 import  DeleteDocument from '@/utils/DeleteDocument'
+import { IoIosArrowBack } from "react-icons/io"
+
 
 
 export default function EventPage(){
@@ -47,7 +49,6 @@ export default function EventPage(){
                 <div className={styles.avatar}></div>
                 <div>
                     <p>name</p>
-                    <p>identification number</p>
                 </div>
             </div>
         )
@@ -67,32 +68,41 @@ export default function EventPage(){
             <div className={styles.ebar}>
                 <Logo />
                 { historypage ? 
-                    <h2>Event History</h2>
+                    <div className={styles.exith} onClick={() => setHistoryPage(false)}>
+                        <IoIosArrowBack style={{fontSize:"1.5rem"}}/>
+                        <h2>{ event.name }</h2>
+                    </div>
                 :
                     <h2>{ event.name }</h2>
                 }
             </div>
 
             <div className={styles.econtentholder}>
+
                 <motion.div className={styles.econtent}
                     animate={!historypage ? {left: 0} : {left: "-100%"}}
                 >
+                    {/* decorative background elements */}
+                    <div className={styles.c1}></div>
+                    <div className={styles.c2}></div>
+                    <div className={styles.c3}></div>
+
+
+
+
                     {/* <p className={styles.einfo}>ID: { event.id }</p> */}
                     <p className={styles.einfo}>Description: { event.description } </p>
 
-
+                    
                     <div className={styles.eactions}>
                         <button onClick={()=> setNewAttendancePage(true)}>new attendance</button>
-                        <p onClick={() => setHistoryPage(true)}>history</p>
+                        <button onClick={() => setHistoryPage(true)}>history</button>
                     </div>
 
                     <div className={styles.listbox}>
                         <div className={styles.listh}>
-                            <AiOutlineEye                              
-                                onClick={() => setAttendancePage(true)}
-                                />
-                            <p>Most recent attendance list</p>
-                            <p>sort by</p>
+                            <AiOutlineEye className={styles.mraEye} onClick={() => setAttendancePage(true)}/>
+                            <p>Most recent attendance</p>
                         </div>
                         <div className={styles.listcont}>
                             
@@ -109,11 +119,22 @@ export default function EventPage(){
                     </div>
                     
                     <div className={styles.statsbox}>
-                        <div className={styles.meanbox}></div>
-                        <div className={styles.miabox}></div>
+                        <div className={styles.meanbox}>
+                            <p>general mean status</p>
+                            <p>10 / 50</p>
+                        </div>
+                        <div className={styles.miabox}>
+                            <p>recent missing guests</p>
+                            <div className={styles.mialist}>
+                                { guests() }
+                                { guests() }
+                                { guests() }
+                            </div>
+                        </div>
                     </div>
                     {/* <button onClick={() => handleDelete()}>delete event</button> */}
 
+                    
                 </motion.div>
                 
                 <EventHistory event={event} 
@@ -125,6 +146,8 @@ export default function EventPage(){
                 />
 
             </div>
+
+
             <NewAttendanceList event={event} isOpen={newattendancepage} toggle={setNewAttendancePage}/>
             <AttendanceList 
                 isOpen={attendancepage} 

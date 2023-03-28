@@ -6,11 +6,13 @@
     position: fixed;
     left: 0;
     padding: 50px 40px;
+    z-index: 3;
 }
 
 .newalist > h3 {
     text-align: center;
     padding: 20px 0;
+    color: #50A495;
 }
 .exitlist {
     font-size: 1.5rem;
@@ -23,12 +25,19 @@
     /* border: 2px solid red; */
     margin: 20px 0;
 }
+.checks {
+    background: #ECEF5F;
+    border-radius: 25px;
+    padding: 20px;
+}
 .locations {
     display: flex;
     flex-direction: column;
 }
 
 .newalist > form > button {
+    background: #CDCA7B;
+    color: white;
     border-radius: 20px;
     border: none;
     padding: 10px 20px;
