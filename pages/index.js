@@ -32,6 +32,7 @@ export default function Home() {
             event => 
             <Link key={Math.random()} href={`/events/${event.id}`} className={styles.eventlink}>
               <p>{event.name}</p>
+              <div className={styles.yellow}></div>
             </Link>
         )
     )
@@ -42,6 +43,8 @@ export default function Home() {
             event => 
             <Link key={Math.random()} href={`/joinedevent/${event.id}`} className={styles.eventlink}>
               <p>{event.name}</p>
+              <div className={styles.green}></div>
+
             </Link>
         )
     )
@@ -58,6 +61,7 @@ export default function Home() {
       
 
         <main className={styles.main}>
+
           <div className={styles.navbar}>
             <Logo />
             <input type="text" />
@@ -84,7 +88,7 @@ export default function Home() {
 
           </div>
 
-          <button onClick={ () => signOut(auth)}>SignOut</button>
+          <button className={styles.exit} onClick={ () => signOut(auth)}>SignOut</button>
 
 
           <CreateEvent isOpen={createpage} close={ setCreatePage }/>

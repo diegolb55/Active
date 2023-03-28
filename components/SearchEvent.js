@@ -6,6 +6,7 @@ import styles from "@/styles/SearchEvent.module.css"
 import JoinEvent from "./JoinEvent"
 import AvailableEvents from "@/utils/AvailableEvents"
 import { GetEventById } from "@/utils/GetEventById"
+import { IoIosArrowBack } from "react-icons/io"
 
 export default function SearchEvent({ isOpen, close }) {
 
@@ -31,15 +32,12 @@ export default function SearchEvent({ isOpen, close }) {
     const searchUsers = () => {
         if (searchInput){
             return (
-            
                 available?.filter( event => event.name.includes(searchInput) != "")
                 .map( event =>
                     <div key={Math.random()} onClick={() => selectEvent(event) }>
                         <p>{ event.name }</p>
-                        <p>{ event.id }</p>
                     </div>
-                )
-                
+                ) 
             )
         }
     }
@@ -55,12 +53,24 @@ export default function SearchEvent({ isOpen, close }) {
                 }}
             />
 
+
+            {
+                joinpage ? 
+                <div className={styles.headingbar}>
+                    <IoIosArrowBack/>
+                    <h4 onClick={() => setJoinPage(false)}>Other Available Events</h4>
+                </div>
+                :
+                <h4>Other Available Events</h4>
+
+            }
+            
+
             <motion.div 
                 className={styles.searchinfo}
                 animate={joinpage ? {left:"-100vw"} : {left:0} }
             >
             
-                <h4>Other Available Events</h4>
                 
 
                 <input className={styles.search} 

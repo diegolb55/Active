@@ -42,12 +42,9 @@ export default function EventHistory({ event, isOpen, toggle, toggleAtt, changeA
         <motion.div className={styles.ehistory}
             animate={isOpen ? {left: 0} : {left: "100vw"}}
         >
-            <div className={styles.exith} onClick={() => toggle(false)}>
-                <IoIosArrowBack style={{fontSize:"1.5rem"}}/>
-                <h3>{ event.name }</h3>
-            </div>
 
-            <p>Recorded attendances</p>
+            <p>recorded</p>
+            <h3>Attendances</h3>
             <div className={styles.alist}>
 
                 { showAttendances() }

@@ -1,10 +1,10 @@
 import styles from "@/styles/JoinEvent.module.css"
 import { motion } from "framer-motion"
 import { useState } from "react";
-import { IoIosArrowBack } from "react-icons/io"
 import { auth } from "@/firebase";
 
 import AddGuest from "@/utils/AddGuest";
+import { margin } from "@mui/system";
 
 export default function JoinEvent({ event, isOpen, toggle, toggleSearch}){
     
@@ -26,18 +26,16 @@ export default function JoinEvent({ event, isOpen, toggle, toggleSearch}){
             animate={isOpen ? {left: 0} : {left:"100%"}}
         >
 
-            <div className={styles.headingbar}>
-                <IoIosArrowBack/>
-                <h4 onClick={() => toggle(false)}>Other Available Events</h4>
-            </div>
+            
 
-            <h3>{ event?.name }</h3>
-            <h4>Event Id: </h4>
-            <p>{ event?.id} </p>
+            <h3 className={styles.ename}>{ event?.name }</h3>
+            
             <h4>Event Description:</h4>
-            <p>{ event?.description }</p>
-            <h4>Mean Status:</h4>
-            <p>20 / 50</p>
+            <p className={styles.desc}>&emsp;{ event?.description }</p>
+            <div className={styles.meanb}>
+                <h4>Mean Status:</h4>
+                <p>20 / 50</p>
+            </div>
 
             <br/>
 
@@ -47,19 +45,19 @@ export default function JoinEvent({ event, isOpen, toggle, toggleSearch}){
             <div style={{ display:"flex", padding: 20,
                 flexDirection:"column"
             }}>
-                <p>enter registration passcode: </p>
+                <p>Enter passcode and join register</p>
                 <input type="text" 
                     value={passcode}
                     onChange={ (e)=>setPasscode(e.target.value) }
                 />
                 <button 
-                onClick={()=>handleJoin()}
-                
+                    onClick={()=>handleJoin()}
                     style={{
                         width: "fit-content",
                         padding:"10px 20px",
                         borderRadius:25,
-                        alignSelf:"flex-end"
+                        alignSelf:"flex-end",
+                        margin:"20px 0"
                 }}>Join</button>
             </div>
                 

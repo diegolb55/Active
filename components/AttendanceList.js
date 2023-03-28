@@ -44,7 +44,7 @@ export default function AttendanceList({ event, att, isOpen, toggle}){
                 <p>present: { att?.attendees?.length} / {att?.capacity}</p>
                 <p>date: { TMToDateFormat(att?.date) }</p>
             </div>
-            <p>Sort by</p>
+            <p className={styles.sorter}>Sort by</p>
             <div className={styles.listbox}>
                 { attendancelist() }
                
