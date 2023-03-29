@@ -49,7 +49,7 @@ export default function Login({ setSignUpPage }){
                                 className={styles.toggle} 
                                 onClick={ () => setSignUpPage(true) }
                             >
-                            SignIn
+                            SignUp
                             </span>
                         </p>
                             
