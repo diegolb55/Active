@@ -56,14 +56,14 @@ export default function SignUp({setSignUpPage}){
                 <div className={styles.actionbox}>
                     <button 
                         type="submit"
-                    > Sign In
+                    > Sign Up
                     </button>
 
                     <p>Or login by <span 
                         className={styles.toggle}
                         onClick={ () => setSignUpPage(false) }
                     >
-                        LogIn
+                        Login
                         </span>
                     </p> 
                     
