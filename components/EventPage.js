@@ -1,4 +1,5 @@
 import Logo from "@/components/Logo"
+import Head from "next/head"
 import styles from "@/styles/EventPage.module.css"
 import { motion } from "framer-motion"
 import { useState, useEffect } from "react"
@@ -43,12 +44,12 @@ export default function EventPage(){
 
 
 
-    const guests = () => {
+    const guests = (n) => {
         return (
             <div className={styles.guestbox}>
                 <div className={styles.avatar}></div>
                 <div>
-                    <p>name</p>
+                    <p>{n}</p>
                 </div>
             </div>
         )
@@ -64,7 +65,11 @@ export default function EventPage(){
 
     return (
         <div className={styles.eventpage}>
-            
+            <Head>
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+                <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"></link>    
+            </Head>            
             <div className={styles.ebar}>
                 <Logo />
                 { historypage ? 
@@ -106,14 +111,13 @@ export default function EventPage(){
                         </div>
                         <div className={styles.listcont}>
                             
-                            { guests() }
-                            { guests() }
-                            { guests() }
-                            { guests() }
-                            { guests() }
-                            { guests() }
-                            { guests() }
-                            { guests() }
+                            { guests("Jake Burgos") }
+                            { guests("Kyle Sanchez") }
+                            { guests("Natasha Sandin") }
+                            { guests("Rebecca Gomez") }
+                            { guests("Diego Lugo") }
+
+                           
 
                         </div>
                     </div>
@@ -126,9 +130,9 @@ export default function EventPage(){
                         <div className={styles.miabox}>
                             <p>recent missing guests</p>
                             <div className={styles.mialist}>
-                                { guests() }
-                                { guests() }
-                                { guests() }
+                            { guests("Pedro Pascal") }
+                            { guests("George Falcon") }
+                            { guests("Micheal Santiago") }
                             </div>
                         </div>
                     </div>

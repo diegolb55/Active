@@ -36,6 +36,8 @@
 }
 .titlebox > h4 {
   font-size: 1.3rem;
+  font-family: 'Open Sans', sans-serif;
+
 }
 .addbtns {
   font-size: 2rem;
@@ -57,6 +59,8 @@
 }
 .eventlink {
   background: lightgray;
+  font-family: 'Open Sans', sans-serif;
+
   border-radius: 20px;
   display: flex;
   justify-content: space-between;
